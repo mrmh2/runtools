@@ -19,6 +19,7 @@ def item_spec_from_fpath(fpath):
 
 def get_all_specs(dirpath):
 
+    dirpath = pathlib.Path(dirpath)
     fpath_iter = dirpath.rglob("*.json")
     specs = [item_spec_from_fpath(fpath) for fpath in fpath_iter]
 
