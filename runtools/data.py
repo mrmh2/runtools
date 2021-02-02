@@ -6,6 +6,7 @@ import dtoolcore
 from dtoolbioimage import Image as dbiImage
 
 
+
 def iter_identifiers_with_extension(dataset, extension):
 
     for idn in dataset.identifiers:
@@ -69,4 +70,7 @@ class ImageDataSetView(collections.abc.Sequence):
 
     def item_by_idn(self, idn):
         fpath = self.container.item_content_abspath(idn)
-        return dbiImage.from_file(fpath)
+        im = dbiImage.from_file(fpath)
+        im.properties = self.container.item_properties(idn)
+        return im
+
